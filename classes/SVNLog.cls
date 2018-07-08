@@ -24,30 +24,21 @@ CLASS classes.SVNLog:
 	
 	
     DEFINE TEMP-TABLE logentry NO-UNDO
-        FIELD revision AS DECIMAL DECIMALS 0 
-        XML-DATA-TYPE "unsignedInt" XML-NODE-TYPE "ATTRIBUTE" 
+        FIELD revision AS DECIMAL DECIMALS 0 XML-DATA-TYPE "unsignedInt" XML-NODE-TYPE "ATTRIBUTE" 
         FIELD author   AS CHARACTER 
         FIELD date     AS DATETIME-TZ 
         FIELD msg      AS CHARACTER 
-        INDEX revKey IS UNIQUE PRIMARY 
-        revision.
+        INDEX revKey IS UNIQUE PRIMARY revision.
 
     DEFINE TEMP-TABLE paths NO-UNDO
-        FIELD logentry_id AS RECID 
-        XML-NODE-TYPE "HIDDEN" .
+        FIELD logentry_id AS RECID XML-NODE-TYPE "HIDDEN" .
 
     DEFINE TEMP-TABLE path NO-UNDO
-        FIELD action        AS CHARACTER 
-        XML-NODE-TYPE "ATTRIBUTE" 
-        FIELD copyfrom-path AS CHARACTER 
-        XML-NODE-TYPE "ATTRIBUTE" 
-        FIELD copyfrom-rev  AS DECIMAL 
-        DECIMALS 0 
-        XML-DATA-TYPE "unsignedInt" XML-NODE-TYPE "ATTRIBUTE" 
-        FIELD path_Text     AS CHARACTER 
-        XML-NODE-TYPE "TEXT" 
-        FIELD paths_id      AS RECID 
-        XML-NODE-TYPE "HIDDEN" .
+        FIELD action        AS CHARACTER XML-NODE-TYPE "ATTRIBUTE" 
+        FIELD copyfrom-path AS CHARACTER XML-NODE-TYPE "ATTRIBUTE" 
+        FIELD copyfrom-rev  AS DECIMAL DECIMALS 0 XML-DATA-TYPE "unsignedInt" XML-NODE-TYPE "ATTRIBUTE" 
+        FIELD path_Text     AS CHARACTER XML-NODE-TYPE "TEXT" 
+        FIELD paths_id      AS RECID XML-NODE-TYPE "HIDDEN" .
 
     DEFINE DATASET log  
         FOR logentry, paths, path
